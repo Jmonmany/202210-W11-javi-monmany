@@ -81,7 +81,27 @@ li.item-task .button {
     cursor: pointer;
 }
 
-.gender {
+.inline {
     display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
-
+.inputs {
+    max-width: 20rem;
+    height: 1rem;
+    margin-inline: 3rem;
+}
+.age {
+    justify-content: space-between;
+    border: none;
+}
+.submit {
+    margin-block: 1rem;
+}
+.label_inputs{
+    width: 6rem;
+}
+.link{
+    text-decoration: none;
+}

@@ -1,11 +1,13 @@
 import { SyntheticEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { MenuItems } from '../../../core/types/menu.item';
 import { Account, TaskType } from '../../models/task';
 
 export function PersonalForm({
     handleForm,
 }: {
     handleForm: (form: object) => void;
-}) {
+}, ) {
     const initialFormData = {
         name: '',
         lastname: '',
@@ -46,7 +48,6 @@ export function PersonalForm({
 
     return (
         <section>
-            <h3>Añadir tarea</h3>
             <form className="add-task" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Name</label>
@@ -72,9 +73,9 @@ export function PersonalForm({
                         required
                     />
                 </div>
-                <div>
-                    <label htmlFor="birthDate">Birth Date</label>
-                    <input
+                <div className='inline age'>
+                    <label className='label_inputs' htmlFor="birthDate">Birth Date</label>
+                    <input className='inputs'
                         type="date"
                         name="birthDate"
                         id="birthDate"
@@ -87,26 +88,25 @@ export function PersonalForm({
                     />
                     <span>{formData.birthDate ? getYears() : ''}</span>
                 </div>
-                <div className='gender'>
-                    <p>Gender</p>
-                    <label htmlFor="male">Male</label>
-                    <input
+                <div className='inline'>
+                    <label className='label_inputs' htmlFor="male">Male</label>
+                    <input className='inputs'
                         type="radio"
                         name="gender"
                         id="male"
                         value="male"
                         onInput={handleInput}
                     />
-                    <label htmlFor="female">Female</label>
-                    <input
+                    <label className='label_inputs' htmlFor="female">Female</label>
+                    <input className='inputs'
                         type="radio"
                         name="gender"
                         id="female"
                         value="female"
                         onInput={handleInput}
                     />
-                    <label htmlFor="undefined">prefer not to mention</label>
-                    <input
+                    <label className='label_inputs' htmlFor="undefined">prefer not to mention</label>
+                    <input className='inputs'
                         type="radio"
                         name="gender"
                         id="undefined"
@@ -126,18 +126,18 @@ export function PersonalForm({
                         required
                     />
                 </div>
-                <div>
+                <div className='inline'>
                     <label htmlFor="isCompleted">
                         Would you like to receive our newsletter?
                     </label>
-                    <input
+                    <input className='inputs'
                         type="checkbox"
                         checked={formData.isCompleted}
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    <button type="submit" onClick={handleSubmit}>Next</button>
+                <div className='inline'>
+                    <button className='submit' type="submit" onClick={handleSubmit}><Link className='link' to='/step 2'>Next</Link></button>
                 </div>
             </form>
         </section>
