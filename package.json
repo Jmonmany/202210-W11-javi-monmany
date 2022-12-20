@@ -22,7 +22,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "test:prod": "react-scripts test --watchAll --collect-coverage --watchAll=false"
+        "test:prod": "react-scripts test --watchAll --collect-coverage --watchAll=false --passWithNoTests"
     },
     "prettier": {
         "singleQuote": true
