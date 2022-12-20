@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { PersonalForm } from "../../components/personal-form/personal.form";
-import { getTasks, saveTasks } from "../../data/mock.service";
+import { saveTasks, getTasks } from "../../data/mock.service";
 import { TaskType } from "../../models/task";
 export default function PersonalDataPage() {
     
@@ -14,8 +14,8 @@ export default function PersonalDataPage() {
         console.log('LOAD');
     };
 
-    const handleAdd = function (task: TaskType) {
-        setTasks([...tasks, task]);
+    const handleForm = function (form: object) {
+        saveTasks(form)
     };
 
     // const handleUpdate = function (task: Partial<TaskType>) {
@@ -39,7 +39,7 @@ export default function PersonalDataPage() {
     return (
         <>
             <h2>Personal data</h2>
-            <PersonalForm handleAdd={handleAdd}></PersonalForm>
+            <PersonalForm handleForm={handleForm}></PersonalForm>
         </>
     );
 }

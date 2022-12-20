@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import AccesDataPage from '../../../features/pages/acces/acces';
-import Confirmation from '../../../features/pages/confirm-data/confirmation';
-import Login from '../../../features/pages/login/login';
+// import AccesDataPage from '../../../features/pages/acces/acces';
+// import Confirmation from '../../../features/pages/confirm-data/confirmation';
+// import Login from '../../../features/pages/login/login';
 import PersonalDataPage from '../../../features/pages/personal/personal';
 import { MenuItems } from '../../types/menu.item';
 
@@ -18,13 +18,16 @@ export function AppRoutes({ items }: { items: MenuItems }) {
             ></Route>
             <Route
                 path={items[1].path}
-                element={<AccesDataPage></AccesDataPage>}
+                // element={<AccesDataPage></AccesDataPage>}
             ></Route>
             <Route
                 path={items[2].path}
-                element={<Confirmation></Confirmation>}
+                // element={<Confirmation></Confirmation>}
             ></Route>
-            <Route path={items[3].path} element={<Login></Login>}></Route>
+            <Route path={items[3].path} 
+            // element={<Login></Login>}
+                
+            ></Route>
             <Route
                 path={'*'}
                 element={<Navigate to="" replace></Navigate>}

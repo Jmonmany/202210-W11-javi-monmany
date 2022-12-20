@@ -1,5 +1,5 @@
-import { Task, TaskType } from '../models/task';
-import { TASKS } from './mock.tasks';
+import { TaskType } from "../models/task";
+import { TASKS } from "./mock.tasks";
 
 export const getTasks = () => {
     return new Promise((resolve) => {
@@ -14,7 +14,7 @@ export const getTasks = () => {
     });
 };
 
-export const saveTasks = async (tasks: Array<Task>) => {
+export const saveTasks = async (form: object) => {
     console.log('Saving');
-    localStorage.setItem('Tasks', JSON.stringify(tasks));
+    localStorage.setItem('PersonalForm', JSON.stringify(form));
 };

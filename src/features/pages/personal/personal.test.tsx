@@ -5,7 +5,7 @@ describe('Given TodoPage component', () => {
     describe('When it has been render', () => {
         test('Then the title should be in the screen', () => {
             const title = /Todo/i;
-            render(<PersonalDataForm />);
+            render(<PersonalDataForm/>);
             // Seleccionando por texto
             // const element = screen.getAllByText(/Learning Components/i);
             // La mejor práctica sería hacerlo por rol

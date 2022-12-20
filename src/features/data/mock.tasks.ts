@@ -1,6 +1,4 @@
-import { Task } from '../models/task';
-
 export const TASKS = [
-    new Task('Hacer algo', 'Pepe'),
-    new Task('Hacer otra cosa', 'Luisa'),
+    // new Account('Hacer algo', 'Pepe'),
+    // new Account('Hacer otra cosa', 'Luisa'),
 ];
