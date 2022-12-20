@@ -9,13 +9,13 @@ export default function PersonalDataPage() {
     const [tasks, setTasks] = useState(initialState);
 
     const handleLoad = async () => {
-        const data = (await getTasks()) as Array<TaskType>;
-        setTasks(data);
-        console.log('LOAD');
+        // const data = (await getTasks()) as Array<TaskType>;
+        // setTasks(data);
+        // console.log('LOAD');
     };
 
-    const handleAdd = function (task: TaskType) {
-        setTasks([...tasks, task]);
+    const handleForm = function (form: object) {
+        saveTasks(form)
     };
 
     // const handleUpdate = function (task: Partial<TaskType>) {
@@ -39,7 +39,7 @@ export default function PersonalDataPage() {
     return (
         <>
             <h2>Personal data</h2>
-            <PersonalForm handleAdd={handleAdd}></PersonalForm>
+            <PersonalForm handleForm={handleForm}></PersonalForm>
         </>
     );
 }

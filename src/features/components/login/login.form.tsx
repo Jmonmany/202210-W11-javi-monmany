@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from 'react';
-import { Task, TaskType } from '../../models/task';
+import { Account, TaskType } from '../../models/task';
 export function LoginForm({ handleAdd }: { handleAdd: (task: TaskType) => void }) {
     const initialFormData: Partial<TaskType> = {
         title: '',
@@ -17,7 +17,7 @@ export function LoginForm({ handleAdd }: { handleAdd: (task: TaskType) => void }
     const handleSubmit = (ev: SyntheticEvent) => {
         ev.preventDefault();
         handleAdd(
-            new Task(
+            new Account(
                 formData.title as string,
                 formData.responsible ? formData.responsible : ''
             )

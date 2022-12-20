@@ -80,3 +80,8 @@ li.item-task {
 li.item-task .button {
     cursor: pointer;
 }
+
+.gender {
+    display: inline-flex;
+}
+

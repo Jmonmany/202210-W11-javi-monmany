@@ -7,7 +7,7 @@ export type TaskType = {
     isCompleted: boolean;
 };
 
-export class Task implements TaskType {
+export class Account implements TaskType {
     static generateId() {
         const aNumbers = new Uint32Array(1);
         window.crypto?.getRandomValues(aNumbers);
@@ -16,7 +16,7 @@ export class Task implements TaskType {
     id: string;
     isCompleted: boolean;
     constructor(public title: string, public responsible: string) {
-        this.id = Task.generateId();
+        this.id = Account.generateId();
         this.isCompleted = false;
     }
 }

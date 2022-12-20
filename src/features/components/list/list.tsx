@@ -9,9 +9,9 @@ export function List() {
     const [tasks, setTasks] = useState(initialState);
 
     const handleLoad = async () => {
-        const data = (await getTasks()) as Array<TaskType>;
-        setTasks(data);
-        console.log('LOAD');
+        // const data = (await getTasks()) as Array<TaskType>;
+        // setTasks(data);
+        // console.log('LOAD');
     };
 
     const handleAdd = function (task: TaskType) {

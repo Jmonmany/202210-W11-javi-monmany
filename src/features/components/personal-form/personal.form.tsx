@@ -1,42 +1,47 @@
 import { SyntheticEvent, useState } from 'react';
-import { TaskType } from '../../models/task';
+import { Account, TaskType } from '../../models/task';
 
 export function PersonalForm({
-    handleAdd,
+    handleForm,
 }: {
-    handleAdd: (task: TaskType) => void;
+    handleForm: (form: object) => void;
 }) {
     const initialFormData = {
         name: '',
         lastname: '',
-        age: '',
+        birthDate: '',
         gender: '',
         email: '',
         isCompleted: false,
     };
 
+    
     const [formData, setFormData] = useState(initialFormData);
+    
+    
+    // {`You are ${~~((Date.now() - +formData.birthDate) / (31557600000))}`}
+    
+    const getYears = () => {
+        const now = new Date().getFullYear()
+        const birth = +formData.birthDate.slice(0,4)
+        const age = "You are " + (now-birth) + " years old"
+        return age 
+    }
 
     const handleInput = (ev: SyntheticEvent) => {
-        console.log('Input');
         const element = ev.target as HTMLFormElement;
         setFormData({ ...formData, [element.name]: element.value });
     };
 
     const handleSubmit = (ev: SyntheticEvent) => {
-        // ev.preventDefault();
-        // handleAdd(
-        //     new Task(
-        //         formData.title as string,
-        //         formData.responsible ? formData.responsible : ''
-        //     )
-        // );
+        ev.preventDefault();
+
+        handleForm(formData);
         // setFormData(initialFormData);
     };
 
     const handleChange = () => {
-        // item.isCompleted = !item.isCompleted;
-        // handleUpdate(item);
+        setFormData({ ...formData, isCompleted : !formData.isCompleted});
     };
 
     return (
@@ -44,74 +49,95 @@ export function PersonalForm({
             <h3>Añadir tarea</h3>
             <form className="add-task" onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="title">Name</label>
+                    <label htmlFor="name">Name</label>
                     <input
                         type="text"
-                        name="title"
-                        id="title"
-                        placeholder="Describe la tarea"
+                        name="name"
+                        id="name"
+                        placeholder="Write your name"
                         value={formData.name}
                         onInput={handleInput}
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="responsible">Last Name</label>
+                    <label htmlFor="lastname">Last Name</label>
                     <input
                         type="text"
-                        name="responsible"
-                        id="responsible"
+                        name="lastname"
+                        id="lastname"
                         value={formData.lastname}
                         onInput={handleInput}
-                        placeholder="Responsable de la tarea"
+                        placeholder="Write your lastname"
+                        required
                     />
                 </div>
                 <div>
-                    <label htmlFor="responsible">Birth Date</label>
+                    <label htmlFor="birthDate">Birth Date</label>
                     <input
-                        type="text"
-                        name="responsible"
-                        id="responsible"
-                        value={formData.age}
+                        type="date"
+                        name="birthDate"
+                        id="birthDate"
+                        value={formData.birthDate}
+                        onInput={(ev) => {
+                            handleInput(ev)
+                            getYears()}}
+                        placeholder="Write your Birthdate"
+                        required
+                    />
+                    <span>{formData.birthDate ? getYears() : ''}</span>
+                </div>
+                <div className='gender'>
+                    <p>Gender</p>
+                    <label htmlFor="male">Male</label>
+                    <input
+                        type="radio"
+                        name="gender"
+                        id="male"
+                        value="male"
                         onInput={handleInput}
-                        placeholder="Responsable de la tarea"
                     />
-                </div>
-                <div>
-                    <label htmlFor="responsible">Gender</label>
+                    <label htmlFor="female">Female</label>
                     <input
-                        type="text"
-                        name="responsible"
-                        id="responsible"
-                        value={formData.gender}
+                        type="radio"
+                        name="gender"
+                        id="female"
+                        value="female"
                         onInput={handleInput}
-                        placeholder="Responsable de la tarea"
+                    />
+                    <label htmlFor="undefined">prefer not to mention</label>
+                    <input
+                        type="radio"
+                        name="gender"
+                        id="undefined"
+                        value="undefined"
+                        onInput={handleInput}
                     />
                 </div>
                 <div>
-                    <label htmlFor="responsible">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="text"
-                        name="responsible"
-                        id="responsible"
+                        name="email"
+                        id="email"
                         value={formData.email}
                         onInput={handleInput}
-                        placeholder="Responsable de la tarea"
+                        placeholder="Write your email"
+                        required
                     />
                 </div>
                 <div>
-                    <label htmlFor="responsible">
+                    <label htmlFor="isCompleted">
                         Would you like to receive our newsletter?
                     </label>
                     <input
                         type="checkbox"
                         checked={formData.isCompleted}
-                        // checked={formData.isCompleted} !! tiene que cambiar
                         onChange={handleChange}
                     />
                 </div>
                 <div>
-                    <button type="submit">Añadir</button>
+                    <button type="submit" onClick={handleSubmit}>Next</button>
                 </div>
             </form>
         </section>
