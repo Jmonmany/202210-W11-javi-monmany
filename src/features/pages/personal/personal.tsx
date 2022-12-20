@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { MenuItems } from "../../../core/types/menu.item";
 import { PersonalForm } from "../../components/personal-form/personal.form";
-import { getTasks, saveTasks } from "../../data/mock.service";
+import { saveTasks, getTasks } from "../../data/mock.service";
 import { TaskType } from "../../models/task";
 export default function PersonalDataPage() {
     
@@ -10,9 +9,9 @@ export default function PersonalDataPage() {
     const [tasks, setTasks] = useState(initialState);
 
     const handleLoad = async () => {
-        // const data = (await getTasks()) as Array<TaskType>;
-        // setTasks(data);
-        // console.log('LOAD');
+        const data = (await getTasks()) as Array<TaskType>;
+        setTasks(data);
+        console.log('LOAD');
     };
 
     const handleForm = function (form: object) {

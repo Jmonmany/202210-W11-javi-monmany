@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import { MenuItems } from '../../../core/types/menu.item';
 import PersonalDataForm from './personal';
 
 describe('Given TodoPage component', () => {

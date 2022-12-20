@@ -1,8 +1,5 @@
 import { SyntheticEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MenuItems } from '../../../core/types/menu.item';
-import { Account, TaskType } from '../../models/task';
-
 export function PersonalForm({
     handleForm,
 }: {
