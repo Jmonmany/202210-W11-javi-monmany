@@ -1,11 +1,16 @@
-export type TaskType = {
-    id: string;
-    title: string;
-    responsible: string;
+export type FormType = {
+    name: string;
+    lastname: string;
+    birthday: string;
     isCompleted: boolean;
+    gender: string;
+    email: string;
+    username: string;
+    password: string;
+    account: string;
 };
 
-export class Account implements TaskType {
+export class Account implements FormType {
     static generateId() {
         const aNumbers = new Uint32Array(1);
         window.crypto?.getRandomValues(aNumbers);
@@ -13,7 +18,16 @@ export class Account implements TaskType {
     }
     id: string;
     isCompleted: boolean;
-    constructor(public title: string, public responsible: string) {
+    constructor(
+        public name: string, 
+        public lastname: string, 
+        public birthday: string,
+        public gender: string,
+        public email: string,
+        public username: string,
+        public password: string,
+        public account: string
+        ) {
         this.id = Account.generateId();
         this.isCompleted = false;
     }

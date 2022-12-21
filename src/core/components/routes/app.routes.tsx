@@ -24,9 +24,9 @@ export function AppRoutes({ items }: { items: MenuItems }) {
                 path={items[2].path}
                 element={<Confirmation></Confirmation>}
             ></Route>
-            <Route path={items[3].path} 
-            element={<Login></Login>}
-                
+            <Route 
+                path={items[3].path} 
+                element={<Login></Login>}
             ></Route>
             <Route
                 path={'*'}
