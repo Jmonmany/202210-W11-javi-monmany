@@ -14,7 +14,15 @@ export const getTasks = () => {
     });
 };
 
-export const saveTasks = async (form: object) => {
+export const savePersonalForm = async (form: object) => {
     console.log('Saving');
     localStorage.setItem('PersonalForm', JSON.stringify(form));
+};
+export const saveAccesData = async (form: object) => {
+    console.log('Saving');
+    localStorage.setItem('AccesData', JSON.stringify(form));
+};
+export const saveLogin = async (form: object) => {
+    console.log('Saving');
+    localStorage.setItem('Login', JSON.stringify(form));
 };
