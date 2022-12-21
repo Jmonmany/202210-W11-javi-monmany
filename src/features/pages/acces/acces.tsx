@@ -1,45 +1,88 @@
-// import { useEffect, useState } from 'react';
-// import { AccesForm } from '../../components/acces-form/acces.form';
-// import { getTasks, saveTasks } from '../../data/mock.service';
-// import { TaskType } from '../../models/task';
+import { useState, SyntheticEvent } from "react";
+import { saveAccesData } from "../../data/mock.service";
+import { Link } from 'react-router-dom';
 
 export default function AccesDataPage() {
-    // const initialState: Array<TaskType> = [];
+    const handleForm = function (form: object) {
+        saveAccesData(form)
+    };
 
-    // const [tasks, setTasks] = useState(initialState);
+    const initialAccessData = {
+        userName: '',
+        password: '',
+        confirmPassword: '',
+        accountType: '',
+    };
+  
+    const [formData, setFormData] = useState(initialAccessData);
+    
+    const handleInput = (ev: SyntheticEvent) => {
+        const element = ev.target as HTMLFormElement;
+        setFormData({ ...formData, [element.name]: element.value });
+    };
 
-    // const handleLoad = async () => {
-    //     // const data = (await getTasks()) as Array<TaskType>;
-    //     // setTasks(data);
-    //     // console.log('LOAD');
-    // };
+    const handleSubmit = (ev: SyntheticEvent) => {
+        ev.preventDefault();
+        handleForm(formData)
+    };
 
-    // const handleAdd = function (task: TaskType) {
-    //     setTasks([...tasks, task]);
-    // };
+    return (
+        <>
+            <h2>Access data</h2>
+            <form className="add-task" onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="userName">User Name</label>
+                    <input
+                        type="text"
+                        name="userName"
+                        id="userName"
+                        placeholder="Write a username"
+                        value={formData.userName}
+                        onInput={handleInput}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Write a password"
+                        value={formData.password}
+                        onInput={handleInput}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Repeat the password</label>
+                    <input
+                        type="password"
+                        name="confirmPassword"
+                        id="confirmPassword"
+                        placeholder="Write your password again"
+                        value={formData.confirmPassword}
+                        onInput={handleInput}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="accountType">Account Type</label>
+                    <select
+                        name="accountType"
+                        id="accountType"
+                        value={formData.accountType}
+                        onInput={handleInput}
+                    >
+                        <option value="">Select an option</option>
+                        <option value="personal">Personal</option>
+                        <option value="pro">Pro</option>
+                        <option value="business">Business</option>
+                    </select>
+                </div>
 
-    // // const handleUpdate = function (task: Partial<TaskType>) {
-    // //     setTasks(
-    // //         tasks.map((item) =>
-    // //             item.id === task.id ? { ...item, ...task } : item
-    // //         )
-    // //     );
-    // // };
-
-    // useEffect(() => {
-    //     handleLoad();
-    // }, []);
-
-    // useEffect(() => {
-    //     if (tasks.length) {
-    //         saveTasks(tasks);
-    //     }
-    // }, [tasks]);
-
-    // return (
-    //     <>
-    //         <h2>Acces data</h2>
-    //         <AccesForm handleAdd={handleAdd}></AccesForm>
-    //     </>
-    // );
+                <div className='inline'>
+                    <button className='submit'><Link className='link' to='/step 1'>Previous</Link></button>
+                    <button className='submit' type="submit" onClick={handleSubmit}><Link className='link' to='/step 3'>Next</Link></button>
+                </div>
+            </form>
+        </>
+    );
 }

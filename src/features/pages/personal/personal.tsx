@@ -1,45 +1,141 @@
-import { useEffect, useState } from "react";
-import { PersonalForm } from "../../components/personal-form/personal.form";
-import { saveTasks, getTasks } from "../../data/mock.service";
-import { TaskType } from "../../models/task";
+import { useState, SyntheticEvent } from "react";
+import { savePersonalForm } from "../../data/mock.service";
+import { Link } from 'react-router-dom';
 export default function PersonalDataPage() {
     
-    const initialState: Array<TaskType> = [];
-
-    const [tasks, setTasks] = useState(initialState);
-
-    const handleLoad = async () => {
-        const data = (await getTasks()) as Array<TaskType>;
-        setTasks(data);
-        console.log('LOAD');
-    };
-
     const handleForm = function (form: object) {
-        saveTasks(form)
+        savePersonalForm(form)
     };
 
-    // const handleUpdate = function (task: Partial<TaskType>) {
-    //     setTasks(
-    //         tasks.map((item) =>
-    //             item.id === task.id ? { ...item, ...task } : item
-    //         )
-    //     );
-    // };
+    const initialFormData = {
+        name: '',
+        lastname: '',
+        birthDate: '',
+        gender: '',
+        email: '',
+        isCompleted: false,
+    };
+  
+    const [formData, setFormData] = useState(initialFormData);
+    
+    const getYears = () => {
+        const now = new Date().getFullYear()
+        const birth = +formData.birthDate.slice(0,4)
+        const age = "You are " + (now-birth) + " years old"
+        return age 
+    }
 
-    useEffect(() => {
-        handleLoad();
-    }, []);
+    const handleInput = (ev: SyntheticEvent) => {
+        const element = ev.target as HTMLFormElement;
+        setFormData({ ...formData, [element.name]: element.value });
+    };
 
-    useEffect(() => {
-        if (tasks.length) {
-            saveTasks(tasks);
-        }
-    }, [tasks]);
+    const handleSubmit = (ev: SyntheticEvent) => {
+        ev.preventDefault();
+        handleForm(formData)
+    };
+
+    const handleChange = () => {
+        setFormData({ ...formData, isCompleted : !formData.isCompleted});
+    };
 
     return (
         <>
             <h2>Personal data</h2>
-            <PersonalForm handleForm={handleForm}></PersonalForm>
+            <section>
+            <form className="add-task" onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="name">Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Write your name"
+                        value={formData.name}
+                        onInput={handleInput}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="lastname">Last Name</label>
+                    <input
+                        type="text"
+                        name="lastname"
+                        id="lastname"
+                        value={formData.lastname}
+                        onInput={handleInput}
+                        placeholder="Write your lastname"
+                        required
+                    />
+                </div>
+                <div className='inline age'>
+                    <label className='label_inputs' htmlFor="birthDate">Birth Date</label>
+                    <input className='inputs'
+                        type="date"
+                        name="birthDate"
+                        id="birthDate"
+                        value={formData.birthDate}
+                        onInput={(ev) => {
+                            handleInput(ev)
+                            getYears()}}
+                        placeholder="Write your Birthdate"
+                        required
+                    />
+                    <span>{formData.birthDate ? getYears() : ''}</span>
+                </div>
+                <div className='inline'>
+                    <label className='label_inputs' htmlFor="male">Male</label>
+                    <input className='inputs'
+                        type="radio"
+                        name="gender"
+                        id="male"
+                        value="male"
+                        onInput={handleInput}
+                    />
+                    <label className='label_inputs' htmlFor="female">Female</label>
+                    <input className='inputs'
+                        type="radio"
+                        name="gender"
+                        id="female"
+                        value="female"
+                        onInput={handleInput}
+                    />
+                    <label className='label_inputs' htmlFor="undefined">prefer not to mention</label>
+                    <input className='inputs'
+                        type="radio"
+                        name="gender"
+                        id="undefined"
+                        value="undefined"
+                        onInput={handleInput}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="text"
+                        name="email"
+                        id="email"
+                        value={formData.email}
+                        onInput={handleInput}
+                        placeholder="Write your email"
+                        required
+                    />
+                </div>
+                <div className='inline'>
+                    <label htmlFor="isCompleted">
+                        Would you like to receive our newsletter?
+                    </label>
+                    <input className='inputs'
+                        type="checkbox"
+                        checked={formData.isCompleted}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='inline'>
+                    <button className='submit' type="submit" onClick={handleSubmit}><Link className='link' to='/step 2'>Next</Link></button>
+                </div>
+            </form>
+        </section>
         </>
     );
 }

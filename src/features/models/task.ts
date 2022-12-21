@@ -1,5 +1,3 @@
-// Se puede usar type, interface o class
-
 export type TaskType = {
     id: string;
     title: string;
