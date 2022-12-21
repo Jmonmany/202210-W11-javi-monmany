@@ -3,31 +3,36 @@ import { Link } from 'react-router-dom';
 import { getForms } from "../../data/mock.service";
 import { FormType } from "../../models/task";
 export default function Confirmation() {
+    const personalData = localStorage.getItem('PersonalForm');
+    const accesData = localStorage.getItem('AccesData');
     
-    const initialState: Array<FormType> = [];
+    const forms = {...JSON.parse(personalData as string), ...JSON.parse(accesData as string)}
+    
+    console.log(forms)
+    // const initialState: Array<FormType> = [];
 
-    const [forms, setTasks] = useState(initialState);
+    // const [forms, setTasks] = useState(initialState);
 
-    const handleLoad = async () => {
-        const data = await getForms();
-        console.log(data)
-        setTasks(data)
-    };
+    // const handleLoad = async () => {
+    //     const data = await getForms();
+    //     console.log(data)
+    //     setTasks(data)
+    // };
 
     const handleSubmit = (ev: SyntheticEvent) => {
         ev.preventDefault();
     };
 
-    useEffect(() => {
-        handleLoad()
-    }, []);
+    // useEffect(() => {
+    //     handleLoad()
+    // }, []);
 
-    useEffect(() => {
-        console.log('useEffect', { forms });
-        if (forms.length) {
-            localStorage.setItem('FakeForm', JSON.stringify(forms));
-        }
-    }, [forms]);
+    // useEffect(() => {
+    //     console.log('useEffect', { forms });
+    //     if (forms.length) {
+    //         localStorage.setItem('FakeForm', JSON.stringify(forms));
+    //     }
+    // }, [forms]);
 
     return (
         <>
@@ -35,38 +40,38 @@ export default function Confirmation() {
             <form className="add-task" onSubmit={handleSubmit}>
                 <div className='inline'>
                     <label htmlFor="userName">Name: </label>
-                    <p>{forms[0].name}</p>
+                    <p>{forms.name}</p>
                 </div>
                 <div className='inline'>
                     <label htmlFor="password">Last name: </label>
-                    <p>{forms[0].lastname}</p>
+                    <p>{forms.lastname}</p>
                 </div>
                 <div className='inline'>
                     <label htmlFor="password">Birthday: </label>
-                    <p>{forms[0].birthday}</p>
+                    <p>{forms.birthday}</p>
                 </div>
                 <div className='inline'>
                     <label htmlFor="accountType">Gender: </label>
-                    <p>{forms[0].gender}</p>
+                    <p>{forms.gender}</p>
                 </div>
                 <div className='inline'>
                     <label htmlFor="accountType">Email: </label>
-                    <p>{forms[0].email}</p>
+                    <p>{forms.email}</p>
                 </div>
                 <div className='inline'>
-                    {forms[0].isCompleted ? <label htmlFor="accountType">Subscribed to Newletters</label> : ''}
+                    {forms.isCompleted ? <label htmlFor="accountType">Subscribed to Newletters</label> : ''}
                 </div>
                 <div className='inline'>
                     <label htmlFor="accountType">Username: </label>
-                    <p>{forms[0].username}</p>
+                    <p>{forms.username}</p>
                 </div>
                 <div className='inline'>
                     <label htmlFor="accountType">Password: </label>
-                    <p>{forms[0].password}</p>
+                    <p>{forms.password}</p>
                 </div>
                 <div className='inline'>
                     <label htmlFor="accountType">Account Type: </label>
-                    <p>{forms[0].account}</p>
+                    <p>{forms.account}</p>
                 </div>
                 <div className='inline'>
                     <button className='submit'><Link className='link' to='/step 2'>Previous</Link></button>
