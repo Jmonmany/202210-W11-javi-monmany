@@ -8,7 +8,7 @@ export default function AccesDataPage() {
     };
 
     const initialAccessData = {
-        userName: '',
+        username: '',
         password: '',
         confirmPassword: '',
         accountType: '',
@@ -31,13 +31,13 @@ export default function AccesDataPage() {
             <h2>Access data</h2>
             <form className="add-task" onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="userName">User Name</label>
+                    <label htmlFor="username">Username</label>
                     <input
                         type="text"
-                        name="userName"
-                        id="userName"
+                        name="username"
+                        id="username"
                         placeholder="Write a username"
-                        value={formData.userName}
+                        value={formData.username}
                         onInput={handleInput}
                     />
                 </div>

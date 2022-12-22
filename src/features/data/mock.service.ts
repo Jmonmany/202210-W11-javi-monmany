@@ -1,6 +1,6 @@
 import { FormType } from "../models/task";
 import { FORM } from "./mock.tasks";
-export const getForms = (): Promise<Array<FormType>> => {
+export const getForms = (): Promise<FormType> => {
     return new Promise((resolve) => {
             const personalData = localStorage.getItem('PersonalForm');
             const accesData = localStorage.getItem('AccesData');

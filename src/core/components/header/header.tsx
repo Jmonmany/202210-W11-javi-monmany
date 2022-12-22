@@ -1,12 +1,8 @@
 import './header.css';
-
-export function Header({ children }: { children: JSX.Element }) {
-    const title = 'Learning Components';
-
+export function Header() {
     return (
         <header aria-label="title">
-            <h1>{title}</h1>
-            {children}
+            <h1>Registration form</h1>
         </header>
     );
 }

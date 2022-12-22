@@ -10,7 +10,7 @@ export default function PersonalDataPage() {
     const initialFormData = {
         name: '',
         lastname: '',
-        birthDate: '',
+        birthday: '',
         gender: '',
         email: '',
         isCompleted: false,
@@ -20,7 +20,7 @@ export default function PersonalDataPage() {
     
     const getYears = () => {
         const now = new Date().getFullYear()
-        const birth = +formData.birthDate.slice(0,4)
+        const birth = +formData.birthday.slice(0,4)
         const age = "You are " + (now-birth) + " years old"
         return age 
     }
@@ -69,19 +69,19 @@ export default function PersonalDataPage() {
                     />
                 </div>
                 <div className='inline age'>
-                    <label className='label_inputs' htmlFor="birthDate">Birth Date</label>
+                    <label className='label_inputs' htmlFor="birthday">Birth Date</label>
                     <input className='inputs'
                         type="date"
-                        name="birthDate"
-                        id="birthDate"
-                        value={formData.birthDate}
+                        name="birthday"
+                        id="birthday"
+                        value={formData.birthday}
                         onInput={(ev) => {
                             handleInput(ev)
                             getYears()}}
-                        placeholder="Write your Birthdate"
+                        placeholder="Write your Birthday"
                         required
                     />
-                    <span>{formData.birthDate ? getYears() : ''}</span>
+                    <span>{formData.birthday ? getYears() : ''}</span>
                 </div>
                 <div className='inline'>
                     <label className='label_inputs' htmlFor="male">Male</label>
@@ -110,9 +110,9 @@ export default function PersonalDataPage() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">E-mail</label>
                     <input
-                        type="text"
+                        type="email"
                         name="email"
                         id="email"
                         value={formData.email}

@@ -3,36 +3,23 @@ import { Link } from 'react-router-dom';
 import { getForms } from "../../data/mock.service";
 import { FormType } from "../../models/task";
 export default function Confirmation() {
-    const personalData = localStorage.getItem('PersonalForm');
-    const accesData = localStorage.getItem('AccesData');
-    
-    const forms = {...JSON.parse(personalData as string), ...JSON.parse(accesData as string)}
-    
-    console.log(forms)
-    // const initialState: Array<FormType> = [];
+    const initialState: Partial<FormType> = {};
 
-    // const [forms, setTasks] = useState(initialState);
+    const [forms, setData] = useState(initialState);
 
-    // const handleLoad = async () => {
-    //     const data = await getForms();
-    //     console.log(data)
-    //     setTasks(data)
-    // };
+    const handleLoad = async () => {
+        const data = await getForms();
+        console.log(data)
+        setData(data)
+    };
 
     const handleSubmit = (ev: SyntheticEvent) => {
         ev.preventDefault();
     };
 
-    // useEffect(() => {
-    //     handleLoad()
-    // }, []);
-
-    // useEffect(() => {
-    //     console.log('useEffect', { forms });
-    //     if (forms.length) {
-    //         localStorage.setItem('FakeForm', JSON.stringify(forms));
-    //     }
-    // }, [forms]);
+    useEffect(() => {
+        handleLoad()
+    }, []);
 
     return (
         <>
@@ -71,7 +58,7 @@ export default function Confirmation() {
                 </div>
                 <div className='inline'>
                     <label htmlFor="accountType">Account Type: </label>
-                    <p>{forms.account}</p>
+                    <p>{forms.accountType}</p>
                 </div>
                 <div className='inline'>
                     <button className='submit'><Link className='link' to='/step 2'>Previous</Link></button>

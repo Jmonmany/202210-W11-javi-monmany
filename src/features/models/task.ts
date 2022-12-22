@@ -7,7 +7,7 @@ export type FormType = {
     email: string;
     username: string;
     password: string;
-    account: string;
+    accountType: string;
 };
 
 export class Account implements FormType {
@@ -26,7 +26,7 @@ export class Account implements FormType {
         public email: string,
         public username: string,
         public password: string,
-        public account: string
+        public accountType: string
         ) {
         this.id = Account.generateId();
         this.isCompleted = false;
