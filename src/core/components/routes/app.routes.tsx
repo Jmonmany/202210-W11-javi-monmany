@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import AccesDataPage from '../../../features/pages/acces/acces';
+import AccesDataPage from '../../../features/pages/access/access';
 import Confirmation from '../../../features/pages/confirm-data/confirmation';
 import Login from '../../../features/pages/login/login';
-import PersonalDataPage from '../../../features/pages/personal/personal';
+import PersonalDataPage from '../../../features/pages/personal/personalForm';
 import { MenuItems } from '../../types/menu.item';
 
 export function AppRoutes({ items }: { items: MenuItems }) {
@@ -24,9 +24,9 @@ export function AppRoutes({ items }: { items: MenuItems }) {
                 path={items[2].path}
                 element={<Confirmation></Confirmation>}
             ></Route>
-            <Route path={items[3].path} 
-            element={<Login></Login>}
-                
+            <Route 
+                path={items[3].path} 
+                element={<Login></Login>}
             ></Route>
             <Route
                 path={'*'}

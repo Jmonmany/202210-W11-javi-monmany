@@ -1,19 +1,16 @@
-import { TaskType } from "../models/task";
-import { TASKS } from "./mock.tasks";
-
-export const getTasks = () => {
+import { FormType } from "../models/task";
+import { FORM } from "./mock.tasks";
+export const getForms = (): Promise<FormType> => {
     return new Promise((resolve) => {
-        setTimeout(() => {
-            const data = localStorage.getItem('Tasks');
-            if (!data) {
-                localStorage.setItem('Tasks', JSON.stringify(TASKS));
-                resolve(TASKS);
+            const personalData = localStorage.getItem('PersonalForm');
+            const accesData = localStorage.getItem('AccesData');
+            if(!personalData || !accesData){
+                localStorage.setItem('FakeForm', JSON.stringify(FORM));
+                resolve(FORM)
             }
-            resolve(JSON.parse(data as string) as Array<TaskType>);
-        }, 2000);
+            resolve({...JSON.parse(personalData as string), ...JSON.parse(accesData as string)});
     });
 };
-
 export const savePersonalForm = async (form: object) => {
     console.log('Saving');
     localStorage.setItem('PersonalForm', JSON.stringify(form));

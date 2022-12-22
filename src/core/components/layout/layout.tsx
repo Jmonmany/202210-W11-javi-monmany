@@ -1,7 +1,6 @@
 import { MenuItems } from '../../types/menu.item';
 import { Footer } from '../footer/footer';
 import { Header } from '../header/header';
-import { Menu } from '../menu/menu';
 
 export function Layout({
     items,
@@ -12,9 +11,7 @@ export function Layout({
 }) {
     return (
         <>
-            <Header>
-                <Menu items={items}></Menu>
-            </Header>
+            <Header></Header>
             <main>{children}</main>
             <Footer></Footer>
         </>
