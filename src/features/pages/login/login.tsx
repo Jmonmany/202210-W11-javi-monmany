@@ -31,11 +31,11 @@ export default function Login() {
     const handleSubmit = (ev: SyntheticEvent) => {
         ev.preventDefault();
         if(formData.username === userData.username &&
-           formData.password === userData.password){
+            formData.password === userData.password){
             setFormData({...formData, isCompleted : true})
-          }else{
+            }else{
             setFormData({...formData, name : 'Invalid password!'})
-          }
+            }
     };
     
     return (
